@@ -2,14 +2,14 @@ require 'rails_helper'
 
 RSpec.describe 'plots index' do
   before(:each) do
-    @plots = create_list(:plot, 5)
-    @plants = create_list(:plant, 10)
+    @plots = create_list(:plot, 2)
+    @plants = create_list(:plant, 4)
 
-    @plots.zip(@plants[0..4]) do |plot, plant|
+    @plots.zip(@plants[0..1]) do |plot, plant|
       create(:plot_plant, plot: plot, plant: plant)
     end
 
-    @plots.zip(@plants[5..9]) do |plot, plant|
+    @plots.zip(@plants[2..3]) do |plot, plant|
       create(:plot_plant, plot: plot, plant: plant)
     end
 
