@@ -2,5 +2,10 @@
   <p><%= plot.number %></p>
   <% plot.plants.each do |plant| %>
     <p><%= plant.name %></p>
+    <%= form_with link: '/plot_plant', method: :delete do |f| %>
+      <input name="plot", type="hidden", value=<%="#{plot.id}"%>>
+      <input name="plant", type="hidden", value=<%="#{plant.id}"%>>
+      <input name="destroy <%="#{plant.name}"%>", type="submit", value="Destroy">
+    <% end %>
   <% end %>
 <% end %>
