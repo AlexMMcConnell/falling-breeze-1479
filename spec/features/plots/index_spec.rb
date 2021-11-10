@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'index page' do
+RSpec.describe 'plots index' do
   before(:each) do
     @plots = create_list(:plot, 5)
     @plants = create_list(:plant, 10)
@@ -36,5 +36,15 @@ RSpec.describe 'index page' do
     #   expect("#{plot.number}").to appear_before(plot.plants.first)
     #   expect("#{plot.number}").to appear_before(plot.plants.last)
     # end
+  end
+
+  it 'has the option to remove plants from a page without deleting plant' do
+    plant = Plant.first
+    expect(page).to have_content(Plant.first.name)
+    click_button("destroy #{Plant.first.name}", :match => :first)
+
+    expect(page).to_not have_content(Plant.first.name)
+
+    expect(Plant.first).to eq(plant)
   end
 end
